@@ -15,10 +15,10 @@ public class Main {
         System.out.println("Значение переменной с типом double равно " + gasoline);
 
         // Задача 2
-        float a = 27.12f;
+        double a = 27.12f;
         long b = 987678965549L;
         float c = 2.786f; //В уроке значение указано через запятую, что является ошибкой на сколько я помню
-        short d = 569;
+        var d = 569;
         short e = -159;
         short f = 27897;
         byte g = 67;
@@ -33,7 +33,7 @@ public class Main {
         int allStudents = class1 + class2 + class3;
 
         int studentPapers = allPapers / allStudents;
-        System.out.println("На каждого ученика рассчитано " + studentPapers + " листов бумаги" );
+        System.out.println("На каждого ученика рассчитано " + studentPapers + " листов бумаги");
 
         // Задача 4
         byte perfomanceOneMinuts = 16 / 2;
@@ -44,8 +44,8 @@ public class Main {
         System.out.println("За сутки (1440 минут) машина произвела " + perfomanceOneDay + " бутылок");
         int perfomanceThreeDay = perfomanceOneMinuts * 4320;
         System.out.println("За 3 дня (4320 минут) машина произвела " + perfomanceThreeDay + " бутылок");
-        int perfomanceOneMonth = perfomanceOneMinuts * 44640;
-        System.out.println("За 1 месяц (44640 минут - если 31 день) машина произвела " + perfomanceOneMonth + " бутылок");
+        int perfomanceOneMonth = perfomanceOneMinuts * 43200;
+        System.out.println("За 1 месяц (44640 минут - если 30 дней машина произвела " + perfomanceOneMonth + " бутылок");
 
         // Задача 5
         byte allClass = 120 / (2 + 4);
@@ -122,7 +122,6 @@ public class Main {
         System.out.println("Маша теперь получает " + monthlySalaryMasha10Percent + " рублей в месяц. Годовой доход вырос на " + differenceYearSalaryMasha + " рублей");
         System.out.println("Денис теперь получает " + monthlySalaryDenis10Percent + " рублей в месяц. Годовой доход вырос на " + differenceYearSalaryDenis + " рублей");
         System.out.println("Кристина теперь получает " + monthlySalaryChristina10Percent + " рублей в месяц. Годовой доход вырос на " + differenceYearSalaryChristina + " рублей");
-
 
 
     }
