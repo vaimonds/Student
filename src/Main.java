@@ -1,84 +1,94 @@
 public class Main {
     public static void main(String[] args) {
         // Задача 1
-        short ageOne = 18;
+        boolean clientOS = false;
 
-        if (ageOne >= 18) {
-            System.out.println("Если возраст человека равен " + ageOne + ". Он совершеннолетний");
+        if (clientOS) {
+            System.out.println("Установите версию приложения для Android по ссылке");
         } else {
-            System.out.println("Если возраст человека равен " + ageOne + ". Он не совершеннолетний, нужно подождать");
+            System.out.println("Установите версию приложения для iOS по ссылке");
         }
 
         // Задача 2
-        short temperature = 12;
+        clientOS = false;
+        short clientDeviceYear = 2015;
 
-        if (temperature < 5) {
-            System.out.println("На улице " + temperature + " градусов. Холодно, нужно надеть шапку");
-        } else if (temperature >= 5) {
-            System.out.println("На улице " + temperature + " градусов. Сегодня тепло, можно идти без шапки");
+        if (clientOS && (clientDeviceYear < 2015)) {
+            System.out.println("Установите облегченную версию приложения для Android по ссылке");
+        } else if (clientOS && (clientDeviceYear >= 2015)) {
+            System.out.println("Установите версию приложения для Android по ссылке");
+        } else if (!clientOS && (clientDeviceYear < 2015)) {
+            System.out.println("Установите облегченную версию приложения для iOS по ссылке");
+        } else {
+            System.out.println("Установите версию приложения для iOS по ссылке");
         }
 
         // Задача 3
-        short speed = 50;
+        short year = 1583;
 
-        if (speed > 60){
-            System.out.println("Если скорость " + speed + ",то скорость превышена");
-        } else if (speed <= 60){
-            System.out.println("Если скорость " + speed + ", то превышения скорости нет");
+        if (year >= 1584 && (((year - 1584) % 100) == 0 || ((year - 1584) % 4) == 0 || ((year - 1584) % 400) == 0)) {
+            System.out.println("Это год является високосным");
+        } else {
+            System.out.println("Этот год не является високосным");
         }
 
         // Задача 4
-        short ageTwo = 27;
+        int deliveryDistance = 59;
+        short deliveryTime = 1;
 
-        if (ageTwo > 24) {
-            System.out.println("Если возраст человека равен " + ageTwo + ", то ему нужно ходить на работу");
-        } else if (ageTwo >= 18 && ageTwo <= 24) {
-            System.out.println("Если возраст человека равен " + ageTwo + ", то ему нужно ходить в университет");
-        } else if (ageTwo >= 7 && ageTwo <= 17) {
-            System.out.println("Если возраст человека равен " + ageTwo + ", то ему нужно ходить на в школу");
-        } else if (ageTwo >= 2 && ageTwo <= 6) {
-            System.out.println("Если возраст человека равен " + ageTwo + ", то ему нужно ходить в детский сад");
+        if (deliveryDistance > 100) {
+            System.out.println("Доставки нет");
+        } else if (deliveryDistance >= 60 && deliveryDistance <= 100) {
+            System.out.println("Потребуется дней " + (deliveryTime + 2));
+        } else if (deliveryDistance >= 20 && deliveryDistance <= 60) {
+            System.out.println("Потребуется дней " + (deliveryTime + 1));
+        } else {
+            System.out.println("Потребуется дней " + deliveryTime);
         }
 
         // Задача 5
-        short ageThree = 14;
+        byte monthNumber = 6;
 
-        if (ageThree > 14) {
-            System.out.println("Если возраст ребёнка равен " + ageThree + ", то ему можно кататься на аттракционе");
-        } else if (ageThree >= 5 && ageThree <= 14) {
-            System.out.println("Если возраст ребёнка равен " + ageThree + ", то ему можно кататься на аттракционе только в сопровождении родителей");
-        } else if (ageThree < 5 ) {
-            System.out.println("Если возраст ребёнка равен " + ageThree + ", то ему нельзя кататься на аттракционе");
+        switch (monthNumber) {
+            case 1:
+                System.out.println("1-й месяц принадлежит к сезону зима");
+                break;
+            case 2:
+                System.out.println("2-й месяц принадлежит к сезону зима");
+                break;
+            case 3:
+                System.out.println("3-й месяц принадлежит к сезону весна");
+                break;
+            case 4:
+                System.out.println("4-й месяц принадлежит к сезону весна");
+                break;
+            case 5:
+                System.out.println("5-й месяц принадлежит к сезону весна");
+                break;
+            case 6:
+                System.out.println("6-й месяц принадлежит к сезону лето");
+                break;
+            case 7:
+                System.out.println("7-й месяц принадлежит к сезону лето");
+                break;
+            case 8:
+                System.out.println("8-й месяц принадлежит к сезону лето");
+                break;
+            case 9:
+                System.out.println("9-й месяц принадлежит к сезону осень");
+                break;
+            case 10:
+                System.out.println("10-й месяц принадлежит к сезону осень");
+                break;
+            case 11:
+                System.out.println("11-й месяц принадлежит к сезону осень");
+                break;
+            case 12:
+                System.out.println("12-й месяц принадлежит к сезону зима");
+                break;
+            default:
+                System.out.println("Номер месяца больше 12");
+                break;
         }
-
-        // Задача 6
-        byte carCapacity = 102;
-        byte numberOfSeats = 60;
-        short numberOfPeople = 101;
-
-
-
-        if (numberOfPeople >= 102) {
-            System.out.println("Если в вагоне будет находится " + numberOfPeople + ", то мест нет, вагон забит");
-        } else if (numberOfPeople >= 60) {
-            System.out.println("Если в вагоне будет находится " + numberOfPeople + " человек, то есть только " + (carCapacity - numberOfPeople) + " стоячих мест");
-        } else if (numberOfPeople < 60) {
-            System.out.println("Если в вагоне будет находится " + numberOfPeople + " человек, то есть " + (numberOfSeats - numberOfPeople) + " сидячих мест и " + (carCapacity - numberOfSeats) + " стоячих мест");
-        }
-
-        // Задача 7
-        int one = 2;
-        int two = 1;
-        int three = 1;
-
-        if (one > two && one > three) {
-            System.out.println("Число " + one + " большее среди чисел " + two + " и " + three);
-        } else if (two > one && two > three) {
-            System.out.println("Число " + two + " большее среди чисел " + one + " и " + three);
-        } else if (three > one && three > two) {
-            System.out.println("Число " + three + " большее среди чисел " + one + " и " + two);
-        }
-
-
     }
 }
