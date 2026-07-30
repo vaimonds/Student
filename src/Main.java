@@ -24,13 +24,19 @@ public class Main {
         }
 
         // Задача 3
-        short year = 1584;
+        short year = 1984;
 
-        if (year > 1588 && ((year - 1584) % 100) == 0) {
-            System.out.println("Этот год не является високосным");
-        } else if (((year - 1584) % 4) == 0 || ((year - 1584) % 400) == 0) {
-            System.out.println("Это год является високосным");
-        } else {
+        if (year >= 1584) {
+            if(((year - 1584) % 400) == 0) {
+                System.out.println("Это год является високосным");
+            } else if (year > 1584 && ((year - 1584) % 100) == 0) {
+                System.out.println("Этот год не является високосным");
+            } else if (((year - 1584) % 4) == 0) {
+                System.out.println("Это год является високосным");
+            } else {
+                System.out.println("Этот год не является високосным");
+            }
+        }  else {
             System.out.println("Этот год не является високосным");
         }
 
