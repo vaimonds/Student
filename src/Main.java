@@ -27,7 +27,7 @@ public class Main {
 
         System.out.println("Taks 4");
 
-        for (int i = 10; i != -10; i--) {
+        for (int i = 10; i != -11; i--) {
             System.out.println(i);
         }
 
@@ -35,7 +35,7 @@ public class Main {
 
         System.out.println("Taks 5");
 
-        for (int i = 1904; i != 2096; i = i + 4) {
+        for (int i = 1904; i != 2100; i = i + 4) {
             System.out.println(i + " год является високосным");
         }
 
