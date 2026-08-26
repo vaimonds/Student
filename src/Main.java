@@ -9,9 +9,10 @@ public class Main {
 
         int[] inputArray1 = {150942, 60456, 89546, 47565, 322679};
         int sum = 0;
-        int maxPay = -1;
-        int minPay = 0;
+        int maxPay = inputArray1[0];
+        int minPay = inputArray1[0];
         float averagePay = 0.0f;
+        int count1 = 0;
 
         // Поиск суммы и максимальной выплаты
         for (int element : inputArray1) {
@@ -25,9 +26,9 @@ public class Main {
         averagePay = (float) sum / inputArray1.length;
 
         // Поиск минимального значения
-        for (int i = 0; i < inputArray1.length - 1; i++) {
-            if (inputArray1[i] > inputArray1[i + 1]) {
-                minPay = inputArray1[i + 1];
+        for (int element : inputArray1) {
+            if (element < minPay) {
+                minPay = element;
             }
         }
 
