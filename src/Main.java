@@ -7,12 +7,12 @@ public class Main {
 
         System.out.println("Task 1");
 
-        String firstName = "Ivanov";
-        String middleName = "Ivan";
-        String lastName = "Ivanovich";
-        String fullName = firstName + " " + middleName + " " + lastName;
+        String firstName = "Ivan";
+        String middleName = "Ivanovich";
+        String lastName = "Ivanov";
+        String fullName = lastName + " " + firstName + " " + middleName;
 
-        System.out.println("Ф. И. О. Сотрудника = " + fullName);
+        System.out.println("Ф. И. О. сотрудника для заполнения отчета — " + fullName);
 
         // Task 2
 
