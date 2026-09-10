@@ -1,4 +1,3 @@
-import java.time.LocalDate;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 
@@ -7,15 +6,14 @@ public class Main {
 
     public static void checkYear(int year) {
 
-        if (year > 1584) {
-            if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
-                System.out.println("Это год является високосным");
-                return;
-            } else {
-                System.out.println("Этот год не является високосным");
-                return;
-            }
+        if (year > 1584 && year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+            System.out.println("Это год является високосным");
+            return;
+        } else {
+            System.out.println("Этот год не является високосным");
+            return;
         }
+
     }
 
     public static void checkDeviceYear(int clientOS, int clientDeviceYear) {
@@ -78,8 +76,6 @@ public class Main {
         } else {
             System.out.println("Потребуется дней " + checkDeliveryDistance(deliveryDistance));
         }
-
-
 
 
     }
