@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 
@@ -61,7 +62,7 @@ public class Main {
 
         int clientOS = 1;
 
-        int clientDeviceYear = 2011;
+        int clientDeviceYear = LocalDate.now().getYear();;
 
         checkDeviceYear(clientOS, clientDeviceYear);
 
