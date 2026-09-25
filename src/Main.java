@@ -2,18 +2,17 @@
 public class Main {
 
     public static void main(String[] args) {
-        Author dmitry = new Author("Дмитрий", "Глуховский");
+        Product product1 = new Product(1, "Phone", 80000, "Mobile");
+        Product product2 = new Product(1, "Phone", 80000, "Mobile");
+        Product product3 = new Product(1, "EliteBook", 80000, "Laptop");
+        System.out.println(product1.equals(product2));
 
-        Book metro2033 = new Book("Метро 2033", dmitry,  2005);
+        Order order1 = new Order("Иван", new Product[]{product1, product2});
+        Order order2 = new Order("Гриша", new Product[]{product1, product3});
+        Order order3 = new Order("Гриша", new Product[]{product1, product1});
 
-        Author tatsuki = new Author("Тацуки", "Фудзимото");
-
-        Book сhainsawMan = new Book ("Chainsaw Man", tatsuki, 2018);
-
-        metro2033.setYearPublic(2020);
-
-        System.out.println(metro2033.getYearPublic());
-
+        System.out.println(order1.equals(order3));
+        System.out.println(order1.equals(order3));
     }
 
 }
