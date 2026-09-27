@@ -8,7 +8,7 @@ public class Main {
         System.out.println(product1.equals(product2));
 
         Order order1 = new Order("Иван", new Product[]{product1, product3});
-        Order order2 = new Order("Гриша", new Product[]{product1, product1});
+        Order order2 = new Order("Гриша", new Product[]{product2, product3});
         Order order3 = new Order("Гриша", new Product[]{product1, product1});
 
         System.out.println(order1.equals(order3));
