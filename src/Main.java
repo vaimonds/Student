@@ -7,12 +7,12 @@ public class Main {
         Product product3 = new Product(1, "EliteBook", 80000, "Laptop");
         System.out.println(product1.equals(product2));
 
-        Order order1 = new Order("Иван", new Product[]{product1, product2});
-        Order order2 = new Order("Гриша", new Product[]{product1, product3});
+        Order order1 = new Order("Иван", new Product[]{product1, product3});
+        Order order2 = new Order("Гриша", new Product[]{product1, product1});
         Order order3 = new Order("Гриша", new Product[]{product1, product1});
 
         System.out.println(order1.equals(order3));
-        System.out.println(order1.equals(order3));
+        System.out.println(order2.equals(order3));
     }
 
 }

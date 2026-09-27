@@ -23,7 +23,7 @@ public class Order {
             return false;
         }
         Order order = (Order) o;
-        if (!Objects.equals(basket, order.basket)) return false;
+        if (customer == order.customer) return true;
         if (basket.length != order.basket.length) return false;
         for (int i = 0; i < basket.length; i++) {
             if (basket[i] == null) {
