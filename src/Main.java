@@ -13,6 +13,7 @@ public class Main {
 
         System.out.println(order1.equals(order3));
         System.out.println(order2.equals(order3));
+        System.out.println(order2.equals(order3));
     }
 
 }
