@@ -9,10 +9,11 @@ public class Main {
 
         Order order1 = new Order("Иван", new Product[]{product1, product3});
         Order order2 = new Order("Гриша", new Product[]{product1, product1});
-        Order order3 = new Order("Гриша", new Product[]{product1, product1});
+        Order order3 = new Order("Гриша", new Product[]{product2, product2});
+        Order order4 = new Order("Иван", new Product[]{product2, product2});
 
-        System.out.println(order1.equals(order3));
         System.out.println(order2.equals(order3));
+        System.out.println(order1.equals(order4));
     }
 
 }

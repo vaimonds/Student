@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.Objects;
 
+
 public class Order {
 
     String customer;
@@ -23,13 +24,14 @@ public class Order {
             return false;
         }
         Order order = (Order) o;
-        if (customer == order.customer) return true;
-        if (basket.length != order.basket.length) return false;
-        for (int i = 0; i < basket.length; i++) {
-            if (basket[i] == null) {
-                if (order.basket[i] != null) return false;
-            } else if (!basket[i].equals(order.basket[i])) {
-                return false;
+        if (Objects.equals (customer, order.customer)) {
+            if (basket.length != order.basket.length) return false;
+            for (int i = 0; i < basket.length; i++) {
+                if (basket[i] == null) {
+                    if (order.basket[i] != null) return false;
+                } else if (!basket[i].equals(order.basket[i])) {
+                    return false;
+                }
             }
         }
         return true;
