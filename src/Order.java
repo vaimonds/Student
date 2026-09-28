@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Objects;
 
 
 public class Order {
@@ -23,7 +24,7 @@ public class Order {
             return false;
         }
         Order order = (Order) o;
-        if (customer.compareToIgnoreCase(order.customer) == 1) {
+        if (Objects.equals (customer, order.customer)) {
             if (basket.length != order.basket.length) return false;
             for (int i = 0; i < basket.length; i++) {
                 if (basket[i] == null) {
