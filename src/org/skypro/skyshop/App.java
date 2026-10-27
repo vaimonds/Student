@@ -1,17 +1,20 @@
 package org.skypro.skyshop;
 
 import org.skypro.skyshop.basket.ProductBasket;
+import org.skypro.skyshop.product.DiscountedProduct;
+import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
+import org.skypro.skyshop.product.SimpleProduct;
 
 public class App {
 
     public static void main(String[] args) {
-        Product product1 = new Product("Молоко", 700);
-        Product product2 = new Product("Печенье", 400);
-        Product product3 = new Product("Шоколадка", 650);
-        Product product4 = new Product("Кефир", 370);
-        Product product5 = new Product("Вафля", 15);
-        Product product6 = new Product("Арбуз", 150);
+
+        SimpleProduct product1 = new SimpleProduct("Молоко", 700);
+        DiscountedProduct product2 = new DiscountedProduct("Печенье", 400, 20);
+        FixPriceProduct product3 = new FixPriceProduct("Шоколадка", 650);
+        SimpleProduct product4 = new SimpleProduct("Кефир", 370);
+        SimpleProduct product5 = new SimpleProduct("Вафля", 15);
 
         ProductBasket basket = new ProductBasket();
         // Добавление продуктов в корзину
@@ -21,33 +24,20 @@ public class App {
         basket.addProduct(product4);
         basket.addProduct(product5);
 
-        // Добавление продуктов в корзину, в которой нет свободного места
-        basket.addProduct(product6);
 
-        // Печать содержимого корзины с несколькими товарами
+        // Получить стоимость SimpleProduct
+        product1.getProductPrice();
+
+        // Получить стоимость FixPriceProduct
+        product3.getProductPrice();
+
+        // Получить стоимость DiscountedProduct
+        product2.getProductPrice();
+
+        // Вывод количества специальных товаров
+        basket.getQuantitySpecialProduct();
+
+        // Печать содержимого корзины
         basket.printBasket();
-
-        // Получение стоимости корзины с несколькими товарами
-        basket.getTotalPriceBasket();
-
-        // Поиск товара, который есть в корзине
-        basket.searchProduct("Вафля");
-
-        // Поиск товара, которого нет в корзине
-        basket.searchProduct("Арбуз");
-
-        // Очистка корзины
-        basket.cleanBasket();
-
-        // Печать содержимого пустой корзины
-        basket.printBasket();
-
-        // Получение стоимости пустой корзины
-        basket.getTotalPriceBasket();
-
-        // Поиск товара по имени в пустой корзине
-        basket.searchProduct("Молоко");
-
-
     }
 }
