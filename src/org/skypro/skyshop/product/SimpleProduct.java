@@ -1,7 +1,5 @@
 package org.skypro.skyshop.product;
 
-import org.skypro.skyshop.Article.Searchable;
-
 public class SimpleProduct extends Product{
 
     private int productPrice;

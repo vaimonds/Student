@@ -1,4 +1,4 @@
-package org.skypro.skyshop.Article;
+package org.skypro.skyshop.search;
 
 public interface Searchable {
 
@@ -9,6 +9,6 @@ public interface Searchable {
      String getName();
 
     default String getStringRepresentation() {
-        return "Имя " + getName() + " тип " + getContentType();
+        return getName() + "-" + getContentType();
     }
 }

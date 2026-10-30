@@ -1,7 +1,7 @@
 package org.skypro.skyshop;
 
-import org.skypro.skyshop.Article.Article;
-import org.skypro.skyshop.Article.Searchable;
+import org.skypro.skyshop.article.Article;
+import org.skypro.skyshop.search.Searchable;
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.FixPriceProduct;

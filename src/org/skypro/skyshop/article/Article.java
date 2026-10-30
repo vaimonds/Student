@@ -1,4 +1,6 @@
-package org.skypro.skyshop.Article;
+package org.skypro.skyshop.article;
+
+import org.skypro.skyshop.search.Searchable;
 
 public final class Article implements Searchable {
     private final String nameArticle;
@@ -24,7 +26,7 @@ public final class Article implements Searchable {
 
     @Override
     public String getSearchTerm() {
-        return getNameArticle() + getTextArticle();
+        return getNameArticle() + "\n" + getTextArticle();
     }
 
     @Override
