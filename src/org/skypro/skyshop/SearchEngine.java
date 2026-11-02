@@ -1,8 +1,9 @@
 package org.skypro.skyshop;
 
+import org.skypro.skyshop.Exception.BestResultNotFound;
 import org.skypro.skyshop.search.Searchable;
 
-public class SearchEngine{
+public class SearchEngine {
     private Searchable[] searchables;
     private int size = 0;
 
@@ -25,12 +26,34 @@ public class SearchEngine{
         return resultFound;
     }
 
-    public void add (Searchable searchable) {
+    public void add(Searchable searchable) {
         if (size < searchables.length) {
             searchables[size] = searchable;
             size++;
         } else {
             System.out.println("Архив поиска переполнен! Не удалось добавить элемент.");
         }
+    }
+
+    public Searchable findMostRelevant(String s) throws BestResultNotFound {
+        String substring = s;;
+        for (Searchable searchable : searchables) {
+            String str = searchable.getSearchTerm();
+            int quantity = 0;
+            int index = 0;
+            int indexSubstring = str.indexOf(substring, index);
+
+            while (indexSubstring != -1) {
+                quantity++;
+                index = indexSubstring + substring.length();
+                indexSubstring = str.indexOf(substring, index);
+            }
+
+            // Предположим что если количество >= 3, то объект считается подходящим
+            if (quantity >= 3) {
+                return searchable;
+            }
+        }
+        throw new BestResultNotFound("Для поискового запроса: ( " + substring + " ) не нашлось подходящей статьи");
     }
 }

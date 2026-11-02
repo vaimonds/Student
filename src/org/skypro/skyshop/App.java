@@ -1,5 +1,6 @@
 package org.skypro.skyshop;
 
+import org.skypro.skyshop.Exception.BestResultNotFound;
 import org.skypro.skyshop.article.Article;
 import org.skypro.skyshop.search.Searchable;
 import org.skypro.skyshop.basket.ProductBasket;
@@ -11,17 +12,26 @@ public class App {
 
     public static void main(String[] args) {
 
-        SimpleProduct product1 = new SimpleProduct("Молоко", 700);
-        DiscountedProduct product2 = new DiscountedProduct("Печенье", 400, 20);
+        SimpleProduct product1 = null;
+        DiscountedProduct product2 = null;
+
+        // Провекра полей в конструкторе Product
+        try {
+            product1 = new SimpleProduct("null", 700);
+            product2 = new DiscountedProduct("Печенье", -400, 400);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+        }
+
+        product2 = new DiscountedProduct("Печенье", 400, 50);
         FixPriceProduct product3 = new FixPriceProduct("Шоколадка", 650);
         SimpleProduct product4 = new SimpleProduct("Кефир", 370);
         SimpleProduct product5 = new SimpleProduct("Вафля", 15);
-        Article product6 = new Article("Молоко", "Это ведь то самое молоко");
-        Article product7 = new Article("Кефир", "Это ведь то самый кефир");
+        Article product6 = new Article("Молоко", "Это ведь то самое молоко. Об это молочном молоке ходят легенды");
+        Article product7 = new Article("Кефир", "Это ведь то самый кефир. Кефирный кефир не удел");
 
 
-        SearchEngine searchEngine = new SearchEngine(10);
-
+        SearchEngine searchEngine = new SearchEngine(7);
         Searchable[] resultSearch = new Searchable[5];
 
         ProductBasket basket = new ProductBasket();
@@ -41,17 +51,33 @@ public class App {
         searchEngine.add(product6);
         searchEngine.add(product7);
 
-        Searchable[] results1 = searchEngine.search("Молоко");
-        printResults(results1);
+        //Searchable[] results1 = searchEngine.search("Молоко");
+        //printResults(results1);
 
-        Searchable[] results2 = searchEngine.search("Кефир");
-        printResults(results2);
+        //Searchable[] results2 = searchEngine.search("Кефир");
+        //printResults(results2);
 
-        Searchable[] results3 = searchEngine.search("Шоколадка");
-        printResults(results3);
+        //Searchable[] results3 = searchEngine.search("Шоколадка");
+        //printResults(results3);
 
-        Searchable[] results4 = searchEngine.search("Хлеб");
-        printResults(results4);
+        //Searchable[] results4 = searchEngine.search("Хлеб");
+        //printResults(results4);
+
+        // Проверка поиска по подстроке удачный вариант
+        try {
+            Searchable results = searchEngine.findMostRelevant("моло");
+            System.out.println(results.toString());
+        } catch (BestResultNotFound e) {
+            System.out.println(e);
+        }
+
+        // Проверка поиска по подстроке НЕ удачный вариант
+        try {
+            Searchable results = searchEngine.findMostRelevant("мало");
+            System.out.println(results.toString());
+        } catch (BestResultNotFound e) {
+            System.out.println(e);
+        }
 
         // Получить стоимость SimpleProduct
         //product1.getProductPrice();
