@@ -1,22 +1,22 @@
 package org.skypro.skyshop.basket;
 
+import org.skypro.skyshop.Exception.BasketEmpty;
+import org.skypro.skyshop.Exception.NotRemove;
 import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.SimpleProduct;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
 public class ProductBasket {
 
-    private Product[] products = new Product[5];
+    private List<Product> products = new LinkedList<>();
 
     public void addProduct(Product product) {
-        for (int i = 0; i < products.length; i++){
-            if (products[i] == null) {
-                products[i] = product;
-                return;
-            }
-        }
-        System.out.println("Невозможно добавить продукт");
+        products.add(product);
     }
 
     public int getTotalPriceBasket() {
@@ -59,11 +59,6 @@ public class ProductBasket {
         return false;
     }
 
-    public void cleanBasket() {
-        for (int i = 0; i < products.length; i++) {
-            products[i] = null;
-        }
-    }
 
     // Подсчёт количества специальных товаров
     public void getQuantitySpecialProduct() {
@@ -74,6 +69,28 @@ public class ProductBasket {
             }
         }
         System.out.println("Специальных товаров: " + countSpecialProduct);
+    }
+
+    // Удаление продукта по имени из корзины
+    public List<Product> removeProductForList(String name) throws NotRemove,BasketEmpty {
+        // Смысла дальше нет идти если имя пустое
+        if (name == null) {
+            throw new NotRemove("Имя продукто пустое, удаление невозможно");
+        }
+        Iterator<Product> iterator = products.iterator();
+        List<Product> removedProducts = new LinkedList<>();
+        while (iterator.hasNext()) {
+            // Чтобы не перескакивать на след. элементы дважды
+            Product currentProduct = iterator.next();
+            if (name.equals(currentProduct.getProductName())) {
+                removedProducts.add(currentProduct);
+                iterator.remove();
+            }
+        }
+        if (removedProducts.size() <= 0) {
+            throw new BasketEmpty("Список пуст");
+        }
+        return removedProducts;
     }
 
 }
