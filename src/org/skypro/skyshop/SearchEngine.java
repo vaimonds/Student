@@ -3,40 +3,31 @@ package org.skypro.skyshop;
 import org.skypro.skyshop.Exception.BestResultNotFound;
 import org.skypro.skyshop.search.Searchable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SearchEngine {
-    private Searchable[] searchables;
-    private int size = 0;
+    private List<Searchable> searchables = new ArrayList<>();
 
-    public SearchEngine(int capacity) {
-        this.searchables = new Searchable[capacity];
-    }
-
-    public Searchable[] search(String search) {
+    public List<Searchable> search(String search) {
         int count = 0;
-        Searchable[] resultFound = new Searchable[5];
+        List<Searchable> resultFound = new ArrayList<>();
         for (Searchable searchable : searchables) {
             if (searchable != null && searchable.getSearchTerm().contains(search)) {
-                resultFound[count] = searchable;
+                resultFound.add(searchable);
                 count++;
-                if (count == 5) {
-                    break;
-                }
             }
         }
         return resultFound;
     }
 
     public void add(Searchable searchable) {
-        if (size < searchables.length) {
-            searchables[size] = searchable;
-            size++;
-        } else {
-            System.out.println("Архив поиска переполнен! Не удалось добавить элемент.");
-        }
+        searchables.add(searchable);
     }
 
     public Searchable findMostRelevant(String s) throws BestResultNotFound {
-        String substring = s;;
+        String substring = s;
+        ;
         for (Searchable searchable : searchables) {
             String str = searchable.getSearchTerm();
             int quantity = 0;
