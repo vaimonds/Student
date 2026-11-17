@@ -5,17 +5,17 @@ import org.skypro.skyshop.search.Searchable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class SearchEngine {
     private List<Searchable> searchables = new ArrayList<>();
-
-    public List<Searchable> search(String search) {
-        int count = 0;
-        List<Searchable> resultFound = new ArrayList<>();
+    public Map<String, Searchable> search(String search) {
+        //List<Searchable> resultFound = new ArrayList<>();
+        Map<String, Searchable> resultFound = new TreeMap<>();
         for (Searchable searchable : searchables) {
             if (searchable != null && searchable.getSearchTerm().contains(search)) {
-                resultFound.add(searchable);
-                count++;
+                resultFound.put(searchable.getName(), searchable);
             }
         }
         return resultFound;
