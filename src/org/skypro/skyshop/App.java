@@ -55,20 +55,10 @@ public class App {
         searchEngine.add(product6);
         searchEngine.add(product7);
 
-
-        System.out.println(searchEngine.search("Молоко"));
-        System.out.println(searchEngine.search("Кефир"));
-        System.out.println(searchEngine.search("Шоколадка"));
-        System.out.println(searchEngine.search("Хлеб"));
-
-        //Map<String, Searchable> results2 = searchEngine.search("Кефир");
-        //printResults(results2);
-
-        //Map<String, Searchable> results3 = searchEngine.search("Шоколадка");
-        //printResults(results3);
-
-        //Map<String, Searchable> results4 = searchEngine.search("Хлеб");
-        //printResults(results4);
+        Map<String, Searchable> results1 = searchEngine.search("Кефир");
+        for (Searchable item : results1.values()) {
+            System.out.println(item.getSearchTerm());
+        }
 
         // Проверка поиска по подстроке удачный вариант
         try {

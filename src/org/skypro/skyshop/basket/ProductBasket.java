@@ -92,19 +92,10 @@ public class ProductBasket {
             throw new NotRemove("Имя продукто пустое, удаление невозможно");
         }
         List<Product> removedProducts = new LinkedList<>();
-        for (List<Product> productList: products.values()) {
-            Iterator<Product> iterator = productList.iterator();
-            while (iterator.hasNext()) {
-                // Чтобы не перескакивать на след. элементы дважды
-                Product currentProduct = iterator.next();
-                if (name.equals(currentProduct.getProductName())) {
-                    removedProducts.add(currentProduct);
-                    iterator.remove();
-                }
-            }
-        }
-        if (removedProducts.size() <= 0) {
-            throw new BasketEmpty("Список пуст");
+        if (products.containsKey(name)) {
+            removedProducts.addAll(products.remove(name));
+        } else {
+            throw new BasketEmpty("Элемент который нужно удалить в списке нет");
         }
         return removedProducts;
     }
