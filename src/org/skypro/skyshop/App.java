@@ -11,10 +11,7 @@ import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.SimpleProduct;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class App {
 
@@ -40,7 +37,6 @@ public class App {
 
 
         SearchEngine searchEngine = new SearchEngine();
-        List<Searchable> resultSearch = new ArrayList<>();
 
         ProductBasket basket = new ProductBasket();
         // Добавление продуктов в корзину
@@ -59,18 +55,10 @@ public class App {
         searchEngine.add(product6);
         searchEngine.add(product7);
 
-
-        List<Searchable> results1 = searchEngine.search("Молоко");
-        printResults(results1);
-
-        List<Searchable> results2 = searchEngine.search("Кефир");
-        printResults(results2);
-
-        List<Searchable> results3 = searchEngine.search("Шоколадка");
-        printResults(results3);
-
-        List<Searchable> results4 = searchEngine.search("Хлеб");
-        printResults(results4);
+        Map<String, Searchable> results1 = searchEngine.search("Кефир");
+        for (Searchable item : results1.values()) {
+            System.out.println(item.getSearchTerm());
+        }
 
         // Проверка поиска по подстроке удачный вариант
         try {
@@ -120,8 +108,10 @@ public class App {
 
     }
 
+
     // Вспомогательный метод для красивого вывода результатов поиска в консоль
-    private static void printResults(List<Searchable> results) {
+    /*
+    private static void printResults(Map<String, Searchable> results) {
         int foundCount = 0;
 
         for (Searchable item : results) {
@@ -135,5 +125,6 @@ public class App {
             System.out.println("Ничего не найдено");
         }
     }
+    */
 }
 

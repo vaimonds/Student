@@ -7,23 +7,27 @@ import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.SimpleProduct;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class ProductBasket {
 
-    private List<Product> products = new LinkedList<>();
+    //private List<Product> products = new LinkedList<>();
+    private Map<String, List<Product>> products = new HashMap<>();
 
     public void addProduct(Product product) {
-        products.add(product);
+        products.computeIfAbsent(product.getName(), k -> new ArrayList<>()).add(product);
     }
 
     public int getTotalPriceBasket() {
         int total = 0;
-        for (Product product : products) {
-            if (product != null) {
-                total += product.getProductPrice();
+        for (List<Product> productList: products.values()) {
+            Iterator<Product> iterator = productList.iterator();
+            while (iterator.hasNext()) {
+                // Чтобы не перескакивать на след. элементы дважды
+                Product currentProduct = iterator.next();
+                if (currentProduct != null) {
+                    total += currentProduct.getProductPrice();
+                }
             }
         }
         return total;
@@ -31,14 +35,17 @@ public class ProductBasket {
 
     public void printBasket() {
         boolean isEmpty = true;
-        for (Product product : products) {
-            if (product != null) {
-                if (product.getClass() == SimpleProduct.class) {
-                    System.out.println("<" + product.getProductName() + ">: " + "<" + product.getProductPrice() + ">");
-                } else {
-                    System.out.println(product.toString());
+
+        for (List<Product> productList: products.values()) {
+            for (Product product : productList) {
+                if (product != null) {
+                    if (product.getClass() == SimpleProduct.class) {
+                        System.out.println("<" + product.getProductName() + ">: " + "<" + product.getProductPrice() + ">");
+                    } else {
+                        System.out.println(product.toString());
+                    }
+                    isEmpty = false;
                 }
-                isEmpty = false;
             }
         }
 
@@ -50,6 +57,7 @@ public class ProductBasket {
         }
     }
 
+    /*
     public boolean searchProduct(String productName) {
         for (Product product : products) {
             if (product != null && productName.equals(product.getProductName())) {
@@ -58,39 +66,37 @@ public class ProductBasket {
         }
         return false;
     }
-
+    */
 
     // Подсчёт количества специальных товаров
     public void getQuantitySpecialProduct() {
         int countSpecialProduct = 0;
-        for (Product product : products) {
-            if (product.isSpecial()) {
-                countSpecialProduct++;
+        for (List<Product> productList: products.values()) {
+            Iterator<Product> iterator = productList.iterator();
+            while (iterator.hasNext()) {
+                // Чтобы не перескакивать на след. элементы дважды
+                Product currentProduct = iterator.next();
+                if (currentProduct.isSpecial()) {
+                    countSpecialProduct++;
+                }
             }
+
         }
         System.out.println("Специальных товаров: " + countSpecialProduct);
     }
 
     // Удаление продукта по имени из корзины
-    public List<Product> removeProductForList(String name) throws NotRemove,BasketEmpty {
+    public List<Product> removeProductForList(String name) throws NotRemove, BasketEmpty {
         // Смысла дальше нет идти если имя пустое
         if (name == null) {
             throw new NotRemove("Имя продукто пустое, удаление невозможно");
         }
-        Iterator<Product> iterator = products.iterator();
         List<Product> removedProducts = new LinkedList<>();
-        while (iterator.hasNext()) {
-            // Чтобы не перескакивать на след. элементы дважды
-            Product currentProduct = iterator.next();
-            if (name.equals(currentProduct.getProductName())) {
-                removedProducts.add(currentProduct);
-                iterator.remove();
-            }
-        }
-        if (removedProducts.size() <= 0) {
-            throw new BasketEmpty("Список пуст");
+        if (products.containsKey(name)) {
+            removedProducts.addAll(products.remove(name));
+        } else {
+            throw new BasketEmpty("Элемент который нужно удалить в списке нет");
         }
         return removedProducts;
     }
-
 }
