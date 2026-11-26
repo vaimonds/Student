@@ -3,19 +3,16 @@ package org.skypro.skyshop;
 import org.skypro.skyshop.Exception.BestResultNotFound;
 import org.skypro.skyshop.search.Searchable;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class SearchEngine {
-    private List<Searchable> searchables = new ArrayList<>();
-    public Map<String, Searchable> search(String search) {
-        //List<Searchable> resultFound = new ArrayList<>();
-        Map<String, Searchable> resultFound = new TreeMap<>();
+    private Set<Searchable> searchables = new HashSet<>();
+
+    public Set<Searchable> search(String search) {
+        Set<Searchable> resultFound = new TreeSet<>(new App.ReverseStringComparator());
         for (Searchable searchable : searchables) {
             if (searchable != null && searchable.getSearchTerm().contains(search)) {
-                resultFound.put(searchable.getName(), searchable);
+                resultFound.add(searchable);
             }
         }
         return resultFound;
@@ -27,7 +24,6 @@ public class SearchEngine {
 
     public Searchable findMostRelevant(String s) throws BestResultNotFound {
         String substring = s;
-        ;
         for (Searchable searchable : searchables) {
             String str = searchable.getSearchTerm();
             int quantity = 0;

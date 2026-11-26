@@ -55,8 +55,8 @@ public class App {
         searchEngine.add(product6);
         searchEngine.add(product7);
 
-        Map<String, Searchable> results1 = searchEngine.search("Кефир");
-        for (Searchable item : results1.values()) {
+        Set<Searchable> results1 = searchEngine.search("Кефир");
+        for (Searchable item : results1) {
             System.out.println(item.getSearchTerm());
         }
 
@@ -104,27 +104,22 @@ public class App {
 
         // Вывод содержимого корзины
         basket.printBasket();
-
-
     }
 
+    public static class ReverseStringComparator implements Comparator<Searchable> {
+        @Override
+        public int compare(Searchable o1, Searchable o2) {
+            int len1 = o1.getName().length();
+            int len2 = o2.getName().length();
+            int result = Integer.compare(o1.getName().length(), o2.getName().length());
 
-    // Вспомогательный метод для красивого вывода результатов поиска в консоль
-    /*
-    private static void printResults(Map<String, Searchable> results) {
-        int foundCount = 0;
-
-        for (Searchable item : results) {
-            if (item != null) {
-                System.out.println(item.getStringRepresentation());
-                foundCount++;
+            // Если длины одинаковые сравниваем по алфавиту
+            if (result == 0) {
+                return o1.getName().compareTo(o2.getName());
             }
-        }
 
-        if (foundCount == 0) {
-            System.out.println("Ничего не найдено");
+            return result;
         }
     }
-    */
 }
 
